@@ -1,0 +1,31 @@
+
+<!DOCTYPE html>
+  <html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Spring app</title>
+  </head>
+  <body>
+    <h1>Página de login</h1>
+    <form action="/acessoAplicacao" method="POST">
+
+      <label>Nome:</label> <input type="text" name="nome"><br>
+      <label>Senha:</label> <input type="password" name="senha"><br>
+      <input type="submit" value="Salvar">
+
+    </form>
+  </br>
+
+    <table>
+
+      <tr th:each = "usuario : ${usuarios}">
+        <td th:text = "${usuario.id}"></td>
+        <td th:text = "${usuario.nome}"></td>
+        <td th:text = "${usuario.senha}"></td>
+      </tr>
+
+    </table>
+
+    <a href="/cadastroUsuario">Efetue seu cadastro!</a>
+  </body>
+</html>

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class CadastroController {
@@ -20,9 +21,13 @@ public class CadastroController {
     }
   
   @RequestMapping(method = RequestMethod.POST, value = "/salvarUsuario")
-    public String saveUser(Usuario usuario){
+    public ModelAndView saveUser(Usuario usuario){
       usuarioService.Save(usuario);
-      return "Cadastro/cadastroUsuario";
+      ModelAndView andView = new ModelAndView("login");
+      Iterable<Usuario> usuariosIt = usuarioService.findAll();
+      andView.addObject("usuarios", usuariosIt);
+      return andView;
+  
     }  
 
     
